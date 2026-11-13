@@ -1,6 +1,6 @@
+import { NoEligibleApproverError } from '../errors';
 import { THOUSAND_DOLLARS_IN_CENTS } from 'shared/constants';
 import type { User, UserRole } from 'shared/types';
-import { NoEligibleApproverError } from '../errors';
 
 // Typed against UserRole (shared/types.ts) rather than an inline 'finance'
 // literal, so if that role is ever renamed there, this breaks at compile time
@@ -23,7 +23,7 @@ export function pickApprover(requester: User, amountCents: number, users: User[]
   let candidate = amountCents >= THOUSAND_DOLLARS_IN_CENTS ? finance : manager;
 
   // Step 2 — first self-approval guard + missing-candidate fallback.
-  // Covers: no manager on file, and the Mallory-style "manager is self" case.
+  // Covers: no manager on file (Peggy) and a manager pointing back to self.
   if (!candidate || candidate.id === requester.id) {
     candidate = finance;
   }
