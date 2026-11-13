@@ -26,7 +26,7 @@ npm run dev:server   # Express API on http://localhost:4000
 npm run dev:client   # Vite dev server on http://localhost:5173
 ```
 
-The client is not yet wired to call the API (frontend build is in progress — see `IMPLEMENTATION_PLAN.md` Part B). Until then, exercise the API directly:
+Open http://localhost:5173 to use the app. To exercise the API directly instead:
 
 ```bash
 curl -H 'X-User-Id: u_alice' http://localhost:4000/api/requests
