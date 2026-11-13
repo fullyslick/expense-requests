@@ -4,7 +4,7 @@ import { z } from 'zod';
 
 const baseRequestValuesSchema = z.object({
   expenseType: z.enum(EXPENSE_TYPES),
-  amountCents: z.number().int().gte(0),
+  amountCents: z.number().int().gte(0.01),
   description: z.string().min(1, 'Description is required'),
   billable: z.boolean().default(false),
   client: z.enum(CLIENTS).optional(),
